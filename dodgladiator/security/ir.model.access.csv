@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dodgladiator_dodgladiator,dodgladiator.dodgladiator,model_dodgladiator_dodgladiator,base.group_user,1,1,1,1
+access_dodgladiator_dodo,dodgladiator.dodo,model_dodgladiator_dodo,base.group_user,1,1,1,1
+access_dodgladiator_reinos,dodgladiator.reinos,model_dodgladiator_reinos,base.group_user,1,1,1,1
+access_dodgladiator_comedor,dodgladiator.comedor,model_dodgladiator_comedor,base.group_user,1,1,1,1
+access_dodgladiator_imagenesdodos,dodgladiator.imagenesdodos,model_dodgladiator_imagenesdodos,base.group_user,1,1,1,1

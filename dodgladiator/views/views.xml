@@ -1,0 +1,150 @@
+<odoo>
+  <data>
+
+    <!-- ______________ DODOS______________ -->
+
+    <record model="ir.actions.act_window" id="dodgladiator.action_dodos">
+      <field name="name">Dodos</field>
+      <field name="res_model">dodgladiator.dodo</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="dodgladiator.dodos_form">
+      <field name="name">Dodos form</field>
+      <field name="model">dodgladiator.dodo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <field name="image_dodo" widget="image"/>
+            <group>
+              <field name="name"/>
+              <field name="description"/>
+              <field name="image"  invisible="1"/>
+              <field name="datacreacion" invisible="1"/>
+              <field name="ataque"/>
+              <field name="salud"/>
+              <field name="level"/> 
+              <button type="object" name="subir_lvl" string="Subir Lvl"/>
+            </group>
+          </sheet>
+        </form>     
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="dodgladiator.dodo_kanban">
+      <field name="name">dodgladiator.dodo kanban</field>
+      <field name="model">dodgladiator.dodo</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="id" />
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                <a type="open">
+                  <image class="oe_kanban_image"
+                    t-att-src="kanban_image('dodgladiator.dodo', 'image_dodo', record.id.value)"/>
+                </a>
+                <div t-attf-class="oe_kanban_content">
+                  <h4>
+                    <a type="edit">
+                      <field name="name"/>
+                    </a>
+                  </h4>
+                </div>  
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="dodgladiator.dodo_search">
+      <field name="name">dodo search</field>
+      <field name="model">dodgladiator.dodo</field>
+      <field name="arch" type="xml">
+        <search>
+              <field name="name" />
+              <field name="ataque"/>
+              <field name="salud"/>
+        </search>
+      </field>
+    </record>
+
+
+
+    <!-- ________________REINO____________ -->
+    <record model="ir.actions.act_window" id="dodgladiator.action_reinos">
+      <field name="name">Reinos</field>
+      <field name="res_model">dodgladiator.reinos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="dodgladiator.reinos_tree">
+      <field name="name">Reinos tree</field>
+      <field name="model">dodgladiator.reinos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="dodo"/>
+        </tree>
+      </field>
+    </record>
+
+      <!-- _______COMEDOR__________ -->
+    <record model="ir.actions.act_window" id="dodgladiator.action_comedor">
+      <field name="name">Comedor</field>
+      <field name="res_model">dodgladiator.comedor</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="dodgladiator.comedor_tree">
+      <field name="name">Comedor tree</field>
+      <field name="model">dodgladiator.comedor</field>
+      <field name="arch" type="xml">
+        <tree decoration-info="nummaxdodos>50">  
+          <field name="name"/>
+          <field name="nummaxdodos"/>
+          <button type="object" name="añadir_dodos" string="Ampliar Comedor"/>
+        </tree>
+      </field>  
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="dodgladiator.action_server">
+      <field name="name">dodgladiator server</field>
+      <field name="model_id" ref="model_dodgladiator_dodgladiator"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="dodgladiator" id="dodgladiator.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Reinos" id="dodgladiator.menu_1" parent="dodgladiator.menu_root" action="dodgladiator.action_reinos"/>
+    <menuitem name="Dodos" id="dodgladiator.menu_2" parent="dodgladiator.menu_root" action="dodgladiator.action_dodos"/>
+    <menuitem name="Comedor" id="dodgladiator.menu_3" parent="dodgladiator.menu_root" action="dodgladiator.action_comedor"/>
+
+    <!-- actions -->
+
+    <!-- <menuitem name="Reino 1" id="dodgladiator.menu_1_reinos" parent="dodgladiator.menu_1"
+              action="dodgladiator.action_reinos"/>
+  <menuitem name="Reino 2" id="dodgladiator.menu_2_reinos" parent="dodgladiator.menu_1"
+              action="dodgladiator.action_reinos"/> -->
+
+  </data>
+</odoo>
